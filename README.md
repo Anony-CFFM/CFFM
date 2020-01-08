@@ -2,7 +2,7 @@
 This is our Tensorflow implementation for the paper:  CFFM
 
 ## Introduction
-Multi-modal Graph Convolution Network is a novel multi-modal recommendation framework based on graph convolutional networks, explicitly modeling modal-specific user preferences to enhance micro-video recommendation.
+Convolutional Feature-interacted Factorization Machine leverages outer product and inner product to encode pairwise cor-relations between feature-interacted dimensions,  and utilize CNN to extract signals from them.
 
 ## Environment Requirement
 The code has been tested running under Python 3.6.5. The required packages are as follows:<br>
@@ -15,9 +15,11 @@ The code has been tested running under Python 3.6.5. The required packages are a
 
 ## Example to Run the Codes
 The instruction of commands has been clearly stated in the codes.
+- For instance  
+```python CFFM.py --dataset frappe --epoch 50 --batch_size 256 --inner_dims 32 --outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 10 --linear_att 1 --activation relu```
 
 ## Dataset
-We provide three processed datasets: Book-Crossing, MovieLens, and Frappe.
+We provide three processed datasets: [Book-Crossing](http://www.informatik.uni-freiburg.de/~cziegler/BX/), [MovieLens](https://grouplens.org/datasets/movielens/latest/), and [Frappe](http://baltrunas.info/research-menu/frappe).
 
 |Dataset|Book-Crossing|MovieLens|Frappe|
 |:-|:-|:-|:-|
@@ -26,5 +28,12 @@ We provide three processed datasets: Book-Crossing, MovieLens, and Frappe.
 |Records|1,213,367|2,006,856|288,606|
 |Sparsity|99.97\%|99.99\%|99.81\%|
 
-Each dataset is divided into a training set: XXX.train.libfm (70%), a validation set: XXX.validation.libfm (20%),and a test set: test.libfm (10%)
+Each dataset is divided into:
+ - The training set: XXX.train.libfm (70%)
+ - The validation set: XXX.validation.libfm (20%)
+ - The test set: test.libfm (10%)
+ 
+ 
+ 
+ 
   
