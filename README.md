@@ -1,5 +1,5 @@
-# CFFM 
-This is our Tensorflow implementation for the paper: Convolutional Feature-interacted Factorization Machines for Sparse Prediction in Recommender Systems.
+## Convolutional Feature-interacted Factorization Machines for Sparse Prediction in Recommender Systems 
+This is our Tensorflow implementation for the paper. 
 
 ## Introduction
 Convolutional Feature-interacted Factorization Machine leverages outer product and inner product to encode pairwise cor-relations between feature-interacted dimensions,  and utilize CNN to extract signals from them. Besides, we enhance the linear regression in FM by introducing a linear attention network, which improves the representation ability with fewer paramaters.
@@ -16,23 +16,17 @@ The code has been tested running under Python 3.6.5. The required packages are a
 ## Example to Run the Codes
 The instruction of commands has been clearly stated in the codes.
 - Book-Crossing dataset
-```
-python CFFM.py --dataset book-crossing --epoch 50 --batch_size 512 --inner_dims 32 
---outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 6 
---linear_att 1 --inner_conv 1 --outer_conv 1 --activation relu
-```
+
+```python CFFM.py --dataset book-crossing --epoch 50 --batch_size 512 --inner_dims 32 --outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 6 --linear_att 1 --inner_conv 1 --outer_conv 1 --activation relu```
+
 - MovieLens dataset
-```
-python CFFM.py --dataset ml-tag --epoch 50 --batch_size 1024 --inner_dims 32 
---outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 3 
---linear_att 1 --inner_conv 1 --outer_conv 1 --activation elu
-```
+
+```python CFFM.py --dataset ml-tag --epoch 50 --batch_size 1024 --inner_dims 32 --outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 3 --linear_att 1 --inner_conv 1 --outer_conv 1 --activation elu```
+
 - Frappe dataset
-```
-python CFFM.py --dataset frappe --epoch 50 --batch_size 256 --inner_dims 32 
---outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 10 
---linear_att 1 --inner_conv 1 --outer_conv 1 --activation selu
-```
+
+```python CFFM.py --dataset frappe --epoch 50 --batch_size 256 --inner_dims 32 --outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 10 --linear_att 1 --inner_conv 1 --outer_conv 1 --activation selu```
+
 
 
 ## Dataset
