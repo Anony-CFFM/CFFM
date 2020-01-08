@@ -1,5 +1,5 @@
-# CFFM
-This is our implementation of paper for Convolutional Feature-interacted Factorization Machines:
+# Convolutional Feature-interacted Factorization Machines for Sparse Prediction in Recommender Systems
+This is our Pytorch implementation for the paper: CFFM
 
 # Requirements
 Python 3.6.5<br>
