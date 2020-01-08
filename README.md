@@ -1,6 +1,5 @@
 ## Convolutional Feature-interacted Factorization Machines for Sparse Prediction in Recommender Systems
-This is our Tensorflow implementation for the paper: 
-> CFFM
+This is our Tensorflow implementation for the paper:  CFFM
 
 ### Introduction
 Multi-modal Graph Convolution Network is a novel multi-modal recommendation framework based on graph convolutional networks, explicitly modeling modal-specific user preferences to enhance micro-video recommendation.
@@ -20,11 +19,13 @@ The instruction of commands has been clearly stated in the codes.
 ### Dataset
 We provide three processed datasets: Book-Crossing, Frappe, and Movielens.
 
-||#Interactions|#Users|#Items|Visual|Acoustic|Textual|
-|:-|:-|:-|:-|:-|:-|:-|
-|Kwai|1,664,305|22,611|329,510|2,048|-|100|
-|Tiktok|726,065|36,656|76,085|128|128|128|
-|Movielens|1,239,508|55,485|5,986|2,048|128|100|
+|Dataset|Book-Crossing|MovieLens|Frappe|
+|:-|:-|:-|:-|
+|Features|226,336|22,611|90,445|5,382|
+|Fields|6|3|10|
+|Records|1,213,367|2,006,856|288,606|
+|Sparsity|99.97\%|99.99\%|99.81\%|
+
 
 -`train.npy`
    Train file. Each line is a user with her/his positive interactions with items: (userID and micro-video ID)  
