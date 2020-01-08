@@ -15,16 +15,11 @@ The code has been tested running under Python 3.6.5. The required packages are a
 
 ## Example to Run the Codes
 The instruction of commands has been clearly stated in the codes.
-- Book-Crossing dataset
-
+- Book-Crossing dataset<br>
 ```python CFFM.py --dataset book-crossing --epoch 50 --batch_size 512 --inner_dims 32 --outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 6 --linear_att 1 --inner_conv 1 --outer_conv 1 --activation relu```
-
-- MovieLens dataset
-
+- MovieLens dataset<br>
 ```python CFFM.py --dataset ml-tag --epoch 50 --batch_size 1024 --inner_dims 32 --outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 3 --linear_att 1 --inner_conv 1 --outer_conv 1 --activation elu```
-
-- Frappe dataset
-
+- Frappe dataset<br>
 ```python CFFM.py --dataset frappe --epoch 50 --batch_size 256 --inner_dims 32 --outer_dims 32 --lamda 0 --lr 0.05 --loss_type square_loss --num_field 10 --linear_att 1 --inner_conv 1 --outer_conv 1 --activation selu```
 
 
