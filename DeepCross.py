@@ -46,7 +46,7 @@ def parse_args():
     parser.add_argument('--batch_norm', type=int, default=0,
                         help='Whether to perform batch normaization (0 disable or 1 enable)')
     parser.add_argument('--num_field', type=int, default=3,
-                        help='Valid dimension of the dataset. (e.g. frappe=10, ml-tag=3)')
+                        help='Valid dimension of the dataset. (e.g. frappe=10, ml-tag=3, book-crossing=6)')
     parser.add_argument('--cross_layer_num', type=int, default=3,
                         help='The number of layers for crossing.')
     parser.add_argument('--deep_layers', nargs='?', default='[128,128]',
@@ -443,7 +443,7 @@ if __name__ == '__main__':
 
     # Data loading
     data = DATA.LoadData(args.path, args.dataset, args.loss_type)
-    save_file = 'pretrain/AFM/%s_%d/%s_%d' % (args.dataset, args.hidden_factor, args.dataset, args.hidden_factor)
+    save_file = 'pretrain/DeepCross/%s_%d/%s_%d' % (args.dataset, args.hidden_factor, args.dataset, args.hidden_factor)
 
     if args.verbose > 0:
         logging.info('DeepCross:dataset=%s,pretrain=%d,save_file=%s,hidden_factor=%d,loss_type=%s,#epoch=%d, batch=%d,lr=%.4f,'
@@ -477,5 +477,3 @@ if __name__ == '__main__':
                  % (best_epoch + 1, model.train_r2[best_valid_r2], model.valid_r2[best_valid_r2],
                     model.test_r2[best_valid_r2],
                     time() - t1))
-
-    logging.info(model.total_parameters)

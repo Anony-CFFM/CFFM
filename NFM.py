@@ -66,7 +66,7 @@ def configure_logging(logFilename):
     logging.getLogger().addHandler(console)  # instantiate handler
 
 
-class NewFM:
+class NFM:
     def __init__(self, features_M, pretrain_flag, save_file, hidden_factor, loss_type, epoch, batch_size, learning_rate,
                  lamda_bilinear, keep,optimizer_type, batch_norm, verbose, tensorboard, random_seed=2019):
         # bind params to class
@@ -408,7 +408,7 @@ if __name__ == '__main__':
 
     if args.verbose > 0:
         print(
-            "FM: dataset=%s, factors=%d, loss_type=%s, #epoch=%d, batch=%d, lr=%.4f, lambda=%.1e, keep=%.2f, optimizer=%s, batch_norm=%d"
+            "NFM: dataset=%s, factors=%d, loss_type=%s, #epoch=%d, batch=%d, lr=%.4f, lambda=%.1e, keep=%.2f, optimizer=%s, batch_norm=%d"
             % (args.dataset, args.hidden_factor, args.loss_type, args.epoch, args.batch_size, args.lr, args.lamda,
                args.keep_prob, args.optimizer, args.batch_norm))
 
@@ -416,29 +416,29 @@ if __name__ == '__main__':
 
     # Data loading
     data = DATA.LoadData(args.path, args.dataset, args.loss_type)
-    save_file = 'pretrain/FM/%s_%d/%s_%d' % (args.dataset, args.hidden_factor, args.dataset, args.hidden_factor)
+    save_file = 'pretrain/NFM/%s_%d/%s_%d' % (args.dataset, args.hidden_factor, args.dataset, args.hidden_factor)
 
     # Training
     t1 = time()
-    new_fm = NewFM(data.features_M, args.pretrain, save_file, args.hidden_factor, args.loss_type, args.epoch,
+    nfm = NFM(data.features_M, args.pretrain, save_file, args.hidden_factor, args.loss_type, args.epoch,
                    args.batch_size, args.lr, args.lamda, args.keep_prob, args.optimizer, args.batch_norm,
                    args.verbose,args.tensorboard)
-    new_fm.train(data)
+    nfm.train(data)
 
     # choice the best RMSE
-    best_valid_score = min(new_fm.valid_rmse)
-    best_epoch = new_fm.valid_rmse.index(best_valid_score)
+    best_valid_score = min(nfm.valid_rmse)
+    best_epoch = nfm.valid_rmse.index(best_valid_score)
     logging.info("Best Iter of RMSE (validation)= %d train = %.4f, valid = %.4f, test = %.4f [%.1f s]"
-                 % (best_epoch + 1, new_fm.train_rmse[best_epoch], new_fm.valid_rmse[best_epoch],
-                    new_fm.test_rmse[best_epoch],
+                 % (best_epoch + 1, nfm.train_rmse[best_epoch], nfm.valid_rmse[best_epoch],
+                    nfm.test_rmse[best_epoch],
                     time() - t1))
 
     # choice the best R2 score
-    best_valid_r2 = max(new_fm.valid_r2)
-    best_valid_r2 = new_fm.valid_r2.index(best_valid_r2)
+    best_valid_r2 = max(nfm.valid_r2)
+    best_valid_r2 = nfm.valid_r2.index(best_valid_r2)
     logging.info("Best Iter of R2 (validation)= %d train = %.4f, valid = %.4f, test = %.4f [%.1f s]"
-                 % (best_epoch + 1, new_fm.train_r2[best_valid_r2], new_fm.valid_r2[best_valid_r2],
-                    new_fm.test_r2[best_valid_r2],
+                 % (best_epoch + 1, nfm.train_r2[best_valid_r2], nfm.valid_r2[best_valid_r2],
+                    nfm.test_r2[best_valid_r2],
                     time() - t1))
 
 

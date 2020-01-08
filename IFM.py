@@ -78,7 +78,7 @@ def configure_logging(logFilename):
     logging.getLogger().addHandler(console)  # instantiate handler
 
 
-class NewIFM:
+class IFM:
     def __init__(self, features_M, pretrain_flag, save_file, hidden_factor, loss_type, epoch, batch_size, learning_rate,
                  lamda_bilinear, keep, optimizer_type, batch_norm, verbose, tensorboard, num_field, att_dim, lamda_attention,
                  temp,INN,lamda_attention1, random_seed=2019):
@@ -469,7 +469,7 @@ if __name__ == '__main__':
 
     if args.verbose > 0:
         print(
-            "FM: dataset=%s, factors=%d, loss_type=%s, #epoch=%d, batch=%d, lr=%.4f, lambda=%.1e, keep=%s, optimizer=%s, batch_norm=%d"
+            "IFM: dataset=%s, factors=%d, loss_type=%s, #epoch=%d, batch=%d, lr=%.4f, lambda=%.1e, keep=%s, optimizer=%s, batch_norm=%d"
             % (args.dataset, args.hidden_factor, args.loss_type, args.epoch, args.batch_size, args.lr, args.lamda,
                eval(args.keep), args.optimizer, args.batch_norm))
 
@@ -477,11 +477,11 @@ if __name__ == '__main__':
 
     # Data loading
     data = DATA.LoadData(args.path, args.dataset, args.loss_type)
-    save_file = 'pretrain/AFM/%s_%d/%s_%d' % (args.dataset, args.hidden_factor, args.dataset, args.hidden_factor)
+    save_file = 'pretrain/IFM/%s_%d/%s_%d' % (args.dataset, args.hidden_factor, args.dataset, args.hidden_factor)
 
     # Training
     t1 = time()
-    model = NewIFM(data.features_M, args.pretrain, save_file, args.hidden_factor, args.loss_type, args.epoch,
+    model = IFM(data.features_M, args.pretrain, save_file, args.hidden_factor, args.loss_type, args.epoch,
                    args.batch_size, args.lr, args.lamda, eval(args.keep), args.optimizer, args.batch_norm,args.verbose,
                    args.tensorboard,args.num_field, args.att_dim,args.lamda_attention,args.temp,args.INN,args.lamda_attention1)
     model.train(data)

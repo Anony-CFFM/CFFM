@@ -72,7 +72,7 @@ def configure_logging(logFilename):
     logging.getLogger().addHandler(console)  # instantiate handler
 
 
-class NewFM:
+class AFM:
     def __init__(self, features_M, pretrain_flag, save_file, hidden_factor, loss_type, epoch, batch_size, learning_rate,
                  lamda_bilinear, keep, optimizer_type, batch_norm, verbose, tensorboard, num_field, att_dim,
                  lamda_attention,
@@ -712,11 +712,6 @@ class NewFM:
         self.create_placeholders()
         self.initialize_variables()
         self.create_inference_AFM()
-        # self.create_inference_test_FM()
-        # self.create_inference_residual_FM()
-        # self.create_inference_residual_FM_2()
-        # self.create_inference_convolution_FM()
-        # self.create_inference_residual_FM()
         self.create_loss()
         self.create_optimizer()
         init_op = tf.global_variables_initializer()
@@ -837,7 +832,7 @@ if __name__ == '__main__':
 
     if args.verbose > 0:
         print(
-            "FM: dataset=%s, factors=%d, loss_type=%s, #epoch=%d, batch=%d, lr=%.4f, lambda=%.1e, keep=%s, optimizer=%s, batch_norm=%d"
+            "AFM: dataset=%s, factors=%d, loss_type=%s, #epoch=%d, batch=%d, lr=%.4f, lambda=%.1e, keep=%s, optimizer=%s, batch_norm=%d"
             % (args.dataset, args.hidden_factor, args.loss_type, args.epoch, args.batch_size, args.lr, args.lamda,
                eval(args.keep), args.optimizer, args.batch_norm))
 
@@ -849,26 +844,26 @@ if __name__ == '__main__':
 
     # Training
     t1 = time()
-    new_fm = NewFM(data.features_M, args.pretrain, save_file, args.hidden_factor, args.loss_type, args.epoch,
+    afm = AFM(data.features_M, args.pretrain, save_file, args.hidden_factor, args.loss_type, args.epoch,
                    args.batch_size, args.lr, args.lamda, eval(args.keep), args.optimizer, args.batch_norm, args.verbose,
                    args.tensorboard, args.num_field, args.att_dim, args.lamda_attention)
-    new_fm.train(data)
+    afm.train(data)
 
     # choice the best RMSE
-    best_valid_score = min(new_fm.valid_rmse)
-    best_epoch = new_fm.valid_rmse.index(best_valid_score)
+    best_valid_score = min(afm.valid_rmse)
+    best_epoch = afm.valid_rmse.index(best_valid_score)
     logging.info("Best Iter of RMSE (validation)= %d train = %.4f, valid = %.4f, test = %.4f [%.1f s]"
-                 % (best_epoch + 1, new_fm.train_rmse[best_epoch], new_fm.valid_rmse[best_epoch],
-                    new_fm.test_rmse[best_epoch],
+                 % (best_epoch + 1, afm.train_rmse[best_epoch], afm.valid_rmse[best_epoch],
+                    afm.test_rmse[best_epoch],
                     time() - t1))
 
     # choice the best R2 score
-    best_valid_r2 = max(new_fm.valid_r2)
-    best_valid_r2 = new_fm.valid_r2.index(best_valid_r2)
+    best_valid_r2 = max(afm.valid_r2)
+    best_valid_r2 = afm.valid_r2.index(best_valid_r2)
     logging.info("Best Iter of R2 (validation)= %d train = %.4f, valid = %.4f, test = %.4f [%.1f s]"
-                 % (best_epoch + 1, new_fm.train_r2[best_valid_r2], new_fm.valid_r2[best_valid_r2],
-                    new_fm.test_r2[best_valid_r2],
+                 % (best_epoch + 1, afm.train_r2[best_valid_r2], afm.valid_r2[best_valid_r2],
+                    afm.test_r2[best_valid_r2],
                     time() - t1))
 
 
-    logging.info('total_parameters:',new_fm.total_parameters)
+

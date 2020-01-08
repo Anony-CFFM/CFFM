@@ -457,10 +457,10 @@ if __name__ == '__main__':
 
     # Data loading
     data = DATA.LoadData(args.path, args.dataset, args.loss_type)
-    save_file = 'pretrain/AFM/%s_%d/%s_%d' % (args.dataset, args.hidden_factor, args.dataset, args.hidden_factor)
+    save_file = 'pretrain/DeepFM/%s_%d/%s_%d' % (args.dataset, args.hidden_factor, args.dataset, args.hidden_factor)
 
     if args.verbose > 0:
-        logging.info('DeepCross:dataset=%s,pretrain=%d,save_file=%s,hidden_factor=%d,loss_type=%s,#epoch=%d, batch=%d,lr=%.4f,'
+        logging.info('DeepFM:dataset=%s,pretrain=%d,save_file=%s,hidden_factor=%d,loss_type=%s,#epoch=%d, batch=%d,lr=%.4f,'
                      'l2_reg=%.1e,drop_out_keep=%s,optimizer=%s, batch_norm=%d,verbose=%s,num_field=%d,dropout_fm=%s,deep_layers=%s,'
                      'activation=%s' % (args.dataset, args.pretrain, save_file, args.hidden_factor, args.loss_type, args.epoch,
                    args.batch_size, args.lr, args.l2_reg, args.drop_out_keep, args.optimizer, args.batch_norm,args.verbose,
