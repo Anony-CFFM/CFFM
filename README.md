@@ -42,7 +42,9 @@ We provide three processed datasets: [Book-Crossing](http://www.informatik.uni-f
 Each dataset is divided into:
  - The training set: **XXX.train.libfm** (70%)
  - The validation set: **XXX.validation.libfm** (20%)
- - The test set: **test.libfm** (10%)
+ - The test set: **XXX.test.libfm** (10%)
+ 
+ and one positive instance pairs with two negative samples.
  
  
  
